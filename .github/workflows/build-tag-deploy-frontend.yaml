@@ -10,6 +10,50 @@ on:
 jobs:
 
   Veloute-Frontend-Build-Tag-Push:
+    environment: ec1236-test-api
+    runs-on: ubuntu-latest
+    steps:
+    
+      # Checkout CIRMO-DPIA Github Repository
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Login to Openshift Silver Cluster
+        uses: redhat-actions/oc-login@v1
+        env:
+          OPENSHIFT_USER: ${{ secrets.OPENSHIFT_SA_USERNAME }}
+          OPENSHIFT_NAMESPACE: ${{ secrets.OPENSHIFT_NAMESPACE }}
+        with: 
+          openshift_server_url: ${{ secrets.OPENSHIFT_LOGIN_URL }}
+          openshift_token: ${{ secrets.OPENSHIFT_SA_PASSWORD}}
+          namespace: ${{ secrets.OPENSHIFT_NAMESPACE }}
+            
+      # Login to BC Gov Docker Image Repository
+      - name: Login to Openshift Docker
+        run : |
+          docker login ${{ secrets.OPENSHIFT_IMAGE_REPO_URL }} -u ${{ secrets.OPENSHIFT_SA_USERNAME }} -p ${{ secrets.OPENSHIFT_SA_PASSWORD }}
+      
+      # Build the DPIA API Application Image via docker-compose
+      - name: Build the Docker image
+        run: |
+          docker-compose build veloute-frontend
+      
+      # TROUBLESHOOTING - view images present in github action run
+      - name: Docker List Images
+        run: |
+          docker image ls 
+      
+      # Tag Docker Image built with latest
+      - name: Docker Tag Version
+        run: |
+          docker tag cirmo-dpia_dpia-api image-registry.apps.silver.devops.gov.bc.ca/b996e6-tools/api-dev:latest
+
+      # Push docker image to BC Gov Repository  
+      - name: Docker Push Version
+        run: |
+          docker push image-registry.apps.silver.devops.gov.bc.ca/b996e6-tools/api-dev:latest
 
   Veloute-Frontend-Deploy:
 
