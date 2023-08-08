@@ -48,12 +48,12 @@ jobs:
       # Tag Docker Image built with latest
       - name: Docker Tag Version
         run: |
-          docker tag cirmo-dpia_dpia-api image-registry.apps.silver.devops.gov.bc.ca/b996e6-tools/api-dev:latest
+          docker tag citz-imb-shr-hackathon-team-veloute_veloute-api image-registry.apps.silver.devops.gov.bc.ca/${{ secrets.OPENSHIFT_NAMESPACE }}/veloute-api:latest
 
       # Push docker image to BC Gov Repository  
       - name: Docker Push Version
         run: |
-          docker push image-registry.apps.silver.devops.gov.bc.ca/b996e6-tools/api-dev:latest
+          docker push image-registry.apps.silver.devops.gov.bc.ca/${{ secrets.OPENSHIFT_NAMESPACE }}/veloute-api:latest
 
 
   Veloute-API-Deploy:
