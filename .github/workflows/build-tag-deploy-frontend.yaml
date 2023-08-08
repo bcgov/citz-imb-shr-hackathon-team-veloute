@@ -4,7 +4,7 @@ on:
   push:
     branches: [ main ]
     paths:
-      - TBD - August 16
+      - "src/frontend/**"
   workflow_dispatch:
   
 jobs:
