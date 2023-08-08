@@ -10,7 +10,7 @@ on:
 jobs:
 
   Veloute-Frontend-Build-Tag-Push:
-    environment: ec1236-test-api
+    environment: ec1236-test-frontend
     runs-on: ubuntu-latest
     steps:
     
