@@ -56,6 +56,38 @@ jobs:
           docker push image-registry.apps.silver.devops.gov.bc.ca/${{ secrets.OPENSHIFT_NAMESPACE }}/veloute-frontend:latest
 
   Veloute-Frontend-Deploy:
+    runs-on: ubuntu-latest
+    environment: ec1236-test-frontend
+    needs: [ Veloute-Frontend-Build-Tag-Push ]
+    steps:
+    
+      # Checkout Repository
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Login to Openshift Silver Cluster
+        uses: redhat-actions/oc-login@v1
+        env:
+          OPENSHIFT_USER: ${{ secrets.OPENSHIFT_SA_USERNAME }}
+          OPENSHIFT_NAMESPACE: ${{ secrets.OPENSHIFT_NAMESPACE }}
+        with: 
+          openshift_server_url: ${{ secrets.OPENSHIFT_LOGIN_URL }}
+          openshift_token: ${{ secrets.OPENSHIFT_SA_PASSWORD}}
+          namespace: ${{ secrets.OPENSHIFT_NAMESPACE }}
+
+      # Use deploy helper script to process and apply DPIA API Application template into DEV namespace
+      - name: Process and Apply API DeploymentConfig, Service, Route templates
+        env:
+          NAMESPACE: ${{ secrets.OPENSHIFT_NAMESPACE }}
+          APPLICATION_NAME: "veloute-frontend"
+          LICENSE_PLATE: ${{ secrets.OPENSHIFT_LICENSE_PLATE }}
+          ENVIRONMENT: "test"
+          DC_TEMPLATE: "frontend-dc-template.yaml"
+          IMAGESTREAM: "veloute-frontend"
+        run: |
+          ./.github/helpers/deploy.sh
 
   Veloute-Frontend-Healthcheck:
 
