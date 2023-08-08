@@ -90,5 +90,32 @@ jobs:
           ./.github/helpers/deploy.sh
 
   Veloute-Frontend-Healthcheck:
+    runs-on: ubuntu-latest
+    environment: ec1236-test-frontend
+    needs: [ Veloute-Frontend-Deploy ]
+    steps:
+    
+      # Checkout Repository
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Login to Openshift Silver Cluster
+        uses: redhat-actions/oc-login@v1
+        env:
+          OPENSHIFT_USER: ${{ secrets.OPENSHIFT_SA_USERNAME }}
+          OPENSHIFT_NAMESPACE: ${{ secrets.OPENSHIFT_NAMESPACE }}
+        with: 
+          openshift_server_url: ${{ secrets.OPENSHIFT_LOGIN_URL }}
+          openshift_token: ${{ secrets.OPENSHIFT_SA_PASSWORD}}
+          namespace: ${{ secrets.OPENSHIFT_NAMESPACE }}
+            
+      # Use application health helper script to monitor readiness/liveness probe response post deployment  
+      - name: Health Check DEV deployment
+        env:
+          NAMESPACE: "${{ secrets.OPENSHIFT_NAMESPACE }}"
+          APPLICATION_NAME: "veloute-frontend"
+        run: |
+          ./.github/helpers/application-health.sh
 
   Veloute-Frontend-Success-Notify:
