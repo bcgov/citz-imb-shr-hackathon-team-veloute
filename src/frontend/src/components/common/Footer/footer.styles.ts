@@ -4,7 +4,6 @@
  */
 import styled from '@emotion/styled';
 import typography from '../../../typography';
-import mq from '../../../constants/mq';
 
 export const FooterWrapper = styled.footer`
   ${typography.toString()}
@@ -22,18 +21,3 @@ export const FooterWrapper = styled.footer`
   border-top: 2px solid #FCBA19;
   padding: 0;
 `;
-
-export const Container = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  flex-direction: row;
-  width: 100dvw;
-  max-width: ${mq.tablet};
-  text-align: center;
-  height: 46px;
-  @media (min-width: ${mq.desktop}){
-    display: none;
-  }
-`;
-

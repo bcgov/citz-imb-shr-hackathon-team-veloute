@@ -1,6 +1,5 @@
 /**
  * @summary Reusable BC Gov Header Component
- * @author Dallas Richmond, LocalNewsTV
  */
 import logo from '/logo-banner.svg';
 
