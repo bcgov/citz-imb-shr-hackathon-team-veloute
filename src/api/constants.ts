@@ -7,7 +7,7 @@ if (ENVIRONMENT && ENVIRONMENT === "local") {
 }
 
 const Constants = {
-  API_PORT: API_PORT || 6000,
+  API_PORT: API_PORT || 5000,
   BACKEND_URL: backendURL,
 };
 
