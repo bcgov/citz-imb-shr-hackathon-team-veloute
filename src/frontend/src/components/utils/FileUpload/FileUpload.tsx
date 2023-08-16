@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Constants from '../../../constants';
 
 export default function FileUpload() {
   const uid = Math.random().toString();
@@ -15,7 +16,7 @@ export default function FileUpload() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleFilesChange = async (e: any) => {
     const base64File = (await toBase64(e.target.files[0])) as string;
-    axios.post('http://localhost:3000/api/upload', base64File)
+    axios.post(`${Constants.BACKEND_URL}/api/upload`, base64File)
       .catch((err) => {
         console.log(err);
       });
