@@ -5,4 +5,3 @@ const mq = {
   };
   
   export default mq;
-  
