@@ -3,6 +3,7 @@
  * @author Dallas Richmond, LocalNewsTV
  */
 import styled from '@emotion/styled';
+import mq from '../../constants/mq';
 
 export const ViewContainer = styled.div`
     background-color: white;
@@ -11,11 +12,11 @@ export const ViewContainer = styled.div`
     left: 0;
     display: flex;
     height: 100svh;
-    justify-content: center;
     width: 100%;
+    flex-direction: column;
 `;
 
-export const Wrapper = styled.div`
+export const ButtonContainer = styled.div`
     height: 100%;
     padding-top: 0;
     justify-content: center;
@@ -26,6 +27,9 @@ export const Wrapper = styled.div`
     object-fit: scale-down;
     @media (max-height: 570px ){
         padding: 60pt 0;
+    }
+    @media (max-width: ${mq.desktop}){
+        flex-direction: column;
     }
 `;
 

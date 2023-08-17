@@ -11,17 +11,13 @@ export const HeaderWrapper = styled.header`
     padding: 0;
     color: #fff;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     height: 65px;
     top: 0;
     position: fixed;
     width: 100%;
     left: 0;
-    @media (min-width: ${mq.tablet}) {
-        justify-content: flex-start;
-        padding: 2em;
-    }
     z-index: 2000;
 `;
 
@@ -56,4 +52,11 @@ export const Image = styled.img`
 
 export const StyledLink = styled.a`
     text-decoration: none;
+`;
+
+export const BannerLeft = styled.div`
+    min-width: 35pt;
+    display: flex;
+    padding: 0 0.5em;
+    margin: 0;
 `;
