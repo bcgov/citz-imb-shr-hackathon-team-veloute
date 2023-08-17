@@ -8,7 +8,6 @@ import {
 export default function Home() {
   return (
     <ViewContainer>
-
       <ButtonContainer>
         <ButtonWrapper>
           <FileUpload />
