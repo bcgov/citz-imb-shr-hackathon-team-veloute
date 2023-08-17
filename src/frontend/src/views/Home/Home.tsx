@@ -1,4 +1,4 @@
-import { FileUpload } from '../../components';
+import { FileUpload, NavButton } from '../../components';
 import {
   ViewContainer,
   Wrapper,
@@ -11,6 +11,20 @@ export default function Home() {
       <Wrapper>
         <ButtonWrapper>
           <FileUpload />
+        </ButtonWrapper>
+        <ButtonWrapper>
+          <NavButton 
+            path="/hm"
+            text="New Salary Recommendation"
+            hex="#FFD6DA"
+          />
+        </ButtonWrapper>
+        <ButtonWrapper>
+          <NavButton 
+            path="/history"
+            text="History"
+            hex="#C8E1F8"
+          />
         </ButtonWrapper>
       </Wrapper>
     </ViewContainer>

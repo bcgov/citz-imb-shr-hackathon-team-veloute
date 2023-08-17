@@ -22,7 +22,7 @@ export const Wrapper = styled.div`
     display: flex;
     box-content: content-box;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
     object-fit: scale-down;
     @media (max-height: 570px ){
         padding: 60pt 0;

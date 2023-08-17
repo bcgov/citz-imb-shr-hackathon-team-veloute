@@ -1,5 +1,5 @@
 import axios from 'axios';
-import constants from '../../../constants/constants';
+import constants from '../../../constants/Constants';
 
 export default function FileUpload() {
   const uid = Math.random().toString();
