@@ -1,5 +1,9 @@
 import axios from 'axios';
-import constants from '../../../constants/constants';
+import constants from '../../../constants/Constants';
+import {
+  ButtonCont,
+  TextCont,
+} from './fileUpload.styles';
 
 export default function FileUpload() {
   const uid = Math.random().toString();
@@ -23,12 +27,15 @@ export default function FileUpload() {
   };
 
   return (
-    <button
+    <ButtonCont
       onClick={() => {
         document.getElementById(uid)!.click();
       }}
+      hex="#FDE7C6"
     >
-      Upload File
+      <TextCont>
+        Upload New Salary Data
+      </TextCont>
       <input 
         type="file"
         accept=".csv"
@@ -36,6 +43,6 @@ export default function FileUpload() {
         onChange={handleFilesChange}
         id={uid}
       />
-    </button>
+    </ButtonCont>
   );
 }
