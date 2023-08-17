@@ -1878,11 +1878,6 @@ const flip = () => {
 };
 
 export const searchPositionNumber = async (req: Request, res: Response) => {
-  if (flip) {
-    // wasn't found
-    return res.status(404).send();
-  } else {
-    // was found
     const history = createFakeHistory();
     const fakeData = {
       title: history.title,
@@ -1890,7 +1885,6 @@ export const searchPositionNumber = async (req: Request, res: Response) => {
       band: history.band,
     };
     return res.status(200).json(fakeData);
-  }
 };
 
 export const postSubmission = async (req: Request, res: Response) => {
