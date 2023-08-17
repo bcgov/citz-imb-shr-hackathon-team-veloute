@@ -1,12 +1,13 @@
 /**
  * @summary The root component of the application 
  */
-import { Header, Footer, FileUpload } from "./components"
+import { Header, Footer } from "./components"
+import ViewRouter from "./routes/ViewRouter"
 function App() {
   return (
     <>
       <Header />
-      <FileUpload />
+      <ViewRouter />
       <Footer />
     </>
   )
