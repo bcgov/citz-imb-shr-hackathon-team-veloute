@@ -1,6 +1,4 @@
-import { parse } from "csv-parse";
 import { Request, Response } from "express";
-import fs from "fs";
 
 /**
  * @description Used to check if API is running.
@@ -9,28 +7,27 @@ import fs from "fs";
  * @returns {Response}      A 200 status indicating API is healthy and running
  */
 
-const decodeBase64ToJSON = (base64String: string) => {
-  try {
-    return JSON.parse(Buffer.from(base64String, "base64").toString("ascii"));
-  } catch {
-    throw new Error("Invalid input in decodeBase64ToJSON()");
-  }
-};
+function extractFieldValues(jsonArray: any[]) {
+  const extractedValues: {}[] = [];
+
+  jsonArray.forEach(
+    (item: { [x: string]: any; hasOwnProperty: (arg0: string) => any }) => {
+      const values: any = {};
+
+      for (const key in item) {
+        if (item.hasOwnProperty(key)) {
+          values[key] = item[key];
+        }
+      }
+
+      extractedValues.push(values);
+    }
+  );
+
+  return extractedValues;
+}
 
 export const csvUpload = async (req: Request, res: Response) => {
-  console.log(req.body.test);
-  parseCSVData(decodeBase64ToJSON(req.body.test));
+  extractFieldValues(req.body);
   res.status(201).send();
 };
-
-function parseCSVData(jsonData: fs.PathLike) {
-  // function to parse the csv JSON data
-  const results: any[] = [];
-
-  fs.createReadStream(jsonData)
-    .pipe(parse())
-    .on("data", (data: any) => results.push(data))
-    .on("end", () => {
-      console.log(results);
-    });
-}
