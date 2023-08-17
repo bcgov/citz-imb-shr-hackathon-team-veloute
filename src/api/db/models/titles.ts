@@ -15,6 +15,7 @@ export const Titles = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
       // allowNull defaults to true
+      unique: true,
     },
   },
   {
