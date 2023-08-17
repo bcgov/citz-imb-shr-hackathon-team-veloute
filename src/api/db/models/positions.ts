@@ -1,6 +1,6 @@
 import { sequelize } from "../conn";
 import { UUIDV4, DataTypes } from "sequelize";
-import { Band } from "./bands";
+import { Bands } from "./bands";
 import { Titles } from "./titles";
 import { Divisions } from "./divisions";
 import { Employees } from "./employees";
@@ -26,7 +26,7 @@ export const Positions = sequelize.define(
   }
 );
 
-Positions.hasOne(Band);
-Positions.hasOne(Titles);
-Positions.hasOne(Divisions);
-Positions.hasMany(Employees);
+Positions.belongsTo(Bands);
+Positions.belongsTo(Titles);
+Positions.belongsTo(Divisions);
+Positions.belongsTo(Employees);

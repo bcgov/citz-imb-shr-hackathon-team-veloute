@@ -23,4 +23,4 @@ export const Divisions = sequelize.define(
   }
 );
 
-Divisions.hasOne(Ministries);
+Divisions.belongsTo(Ministries);

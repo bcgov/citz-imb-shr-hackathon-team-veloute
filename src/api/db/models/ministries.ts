@@ -1,5 +1,6 @@
 import { sequelize } from "../conn";
 import { UUIDV4, DataTypes } from "sequelize";
+import { Divisions } from "./divisions";
 
 export const Ministries = sequelize.define(
   "Ministries",

@@ -21,10 +21,11 @@ app.listen(API_PORT, async (err?: Error) => {
     await Titles.sync({ alter: true });
     await Bands.sync({ alter: true });
     await Ministries.sync({ alter: true });
-    // await Employees.sync({ alter: true });
-    // await HM_input.sync({ alter: true });
-    // await Positions.sync({ alter: true });
-    // await Divisions.sync({ alter: true });
+    await Employees.sync({ alter: true });
+    await Divisions.sync({ alter: true });
+
+    await Positions.sync({ alter: true });
+    await HM_input.sync({ alter: true });
 
     console.log("All models were synchronized successfully.");
   } catch (error) {

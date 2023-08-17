@@ -29,6 +29,6 @@ export const HM_input = sequelize.define(
   }
 );
 
-HM_input.hasOne(Positions);
-HM_input.hasMany(Employees);
-HM_input.hasOne(Divisions);
+HM_input.belongsTo(Positions);
+HM_input.belongsTo(Employees);
+HM_input.belongsTo(Divisions);
