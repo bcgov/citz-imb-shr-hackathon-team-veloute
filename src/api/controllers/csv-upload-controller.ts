@@ -28,6 +28,7 @@ function extractFieldValues(jsonArray: any[]) {
 }
 
 export const csvUpload = async (req: Request, res: Response) => {
+  console.log(req.body);
   extractFieldValues(req.body);
   res.status(201).send();
 };

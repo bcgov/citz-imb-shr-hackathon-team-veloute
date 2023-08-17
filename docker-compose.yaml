@@ -3,27 +3,27 @@ services:
   #############################################################################################
   ###                                         API                                           ###
   #############################################################################################
-  veloute-api:
-    container_name: veloute-api
-    build:
-      context: ./src/backend
-      dockerfile: .docker/Dockerfile
-    volumes:
-    networks:
-      - veloute-network
-    ports:
+  # veloute-api:
+  #   container_name: veloute-api
+  #   build:
+  #     context: ./src/backend
+  #     dockerfile: .docker/Dockerfile
+  #   volumes:
+  #   networks:
+  #     - veloute-network
+  #   ports:
   
-  #############################################################################################
-  ###                                       Frontend                                        ###
-  #############################################################################################
-  veloute-webapp:
-    container_name: veloute-webapp
-    build:
-      context: ./src/frontend
-      dockerfile: .docker/Dockerfile
-    networks:
-      - veloute-network
-    ports:
+  # #############################################################################################
+  # ###                                       Frontend                                        ###
+  # #############################################################################################
+  # veloute-webapp:
+  #   container_name: veloute-webapp
+  #   build:
+  #     context: ./src/frontend
+  #     dockerfile: .docker/Dockerfile
+  #   networks:
+  #     - veloute-network
+  #   ports:
   
   #############################################################################################
   ###                                       Database                                        ###
