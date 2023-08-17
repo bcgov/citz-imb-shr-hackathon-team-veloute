@@ -10,5 +10,6 @@ app.use(express.json({ limit: "10mb" }));
 
 app.use("/api", router.healthRouter);
 app.use("/api", router.csvUploadRouter);
+app.use("/api", router.dbRouter);
 
 export default app;
