@@ -1,9 +1,10 @@
 import { sequelize } from "../conn";
 import { UUIDV4, DataTypes } from "sequelize";
+// import { Divisions } from "./divisions";
 // import { Positions } from "./positions";
 
-export const Bands = sequelize.define(
-  "Bands",
+export const Employees = sequelize.define(
+  "Employees",
   {
     // Model attributes are defined here
     id: {
@@ -12,16 +13,10 @@ export const Bands = sequelize.define(
       primaryKey: true,
       defaultValue: UUIDV4,
     },
-    name: {
-      type: DataTypes.STRING,
+    salary: {
+      type: DataTypes.INTEGER,
       allowNull: false,
       // allowNull defaults to true
-    },
-    minValue: {
-      type: DataTypes.INTEGER,
-    },
-    maxValue: {
-      type: DataTypes.INTEGER,
     },
   },
   {
@@ -29,4 +24,6 @@ export const Bands = sequelize.define(
   }
 );
 
-// Bands.belongsTo(Positions, { as: "Positions", foreignKey: "id" });
+Employees.hasOne(Employees);
+// Employees.hasOne(Positions);
+// Employees.hasOne(Divisions);

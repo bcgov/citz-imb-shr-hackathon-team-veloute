@@ -1,9 +1,9 @@
 import { sequelize } from "../conn";
 import { UUIDV4, DataTypes } from "sequelize";
-// import { Positions } from "./positions";
+import { Ministries } from "./ministries";
 
-export const Bands = sequelize.define(
-  "Bands",
+export const Divisions = sequelize.define(
+  "Divisions",
   {
     // Model attributes are defined here
     id: {
@@ -17,16 +17,10 @@ export const Bands = sequelize.define(
       allowNull: false,
       // allowNull defaults to true
     },
-    minValue: {
-      type: DataTypes.INTEGER,
-    },
-    maxValue: {
-      type: DataTypes.INTEGER,
-    },
   },
   {
     // Other model options go here
   }
 );
 
-// Bands.belongsTo(Positions, { as: "Positions", foreignKey: "id" });
+Divisions.belongsTo(Ministries);
